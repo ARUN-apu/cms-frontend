@@ -17,6 +17,21 @@ function RegisterPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError("");
+
+        // Frontend validation
+        if (name.trim().length < 2) {
+            return setError("Name must be at least 2 characters");
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return setError("Please enter a valid email address");
+        }
+
+        if (password.length < 6) {
+            return setError("Password must be at least 6 characters");
+        }
+
         setLoading(true);
 
         try {

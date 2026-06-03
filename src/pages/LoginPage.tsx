@@ -15,6 +15,16 @@ function LoginPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError("");
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return setError("Please enter a valid email address");
+        }
+
+        if (password.length < 6) {
+            return setError("Password must be at least 6 characters");
+        }
+
         setLoading(true);
 
         try {
